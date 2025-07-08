@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/icon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/container.css}">
+	<link rel="stylesheet" th:href="@{/header.css}">
+	<link rel="stylesheet" th:href="@{/profileMedcine.css}">
+    <title>MedTime</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+			<h2 th:if="${session.Nom != null}" th:text="'Bonjour ' + ${session.Nom}"></h2>
+            <ul>
+                <li><a th:href="@{/login/acceuil}">Les rendez-vous</a></li>
+                <li th:if="${session.role == 'medcin'}"><a th:href="@{/Secretaires/ListeSecretaires}">Secrétaires</a></li>
+                <li><a th:href="@{/Vacances/listeVacance}">Vacances</a></li>
+				<li th:if="${session.role == 'medcin'}"><a class="selected" th:href="@{/Medcins/ProfileMedcin}">Profile</a></li>
+				<li th:if="${session.role == 'secretaire'}" th:href="@{/Secretaires/ProfileSecretaire/{id}(id=${session.user.id})}"><a>Profile</a></li>
+            </ul>
+            <a th:href="@{/login/logout}"><button type="button">Deconnecter</button></a>
+        </header>
+		<main  th:object="${medcins}">
+			<p th:if="${erreurModification}" style="color: red; font-weight: bold;" th:text="${erreurModification}"></p>
+            <div class="data" >
+                <div class="infPersonnel">
+                    <div>
+                        <p><b>Nom:</b></p>
+                        <p style="text-transform: capitalize;" th:text="*{nom}"></p>
+                    </div>
+                    <div>
+                        <p><b>Prénom:</b></p>
+                        <p style="text-transform: capitalize;" th:text="*{prenom}"></p>
+                    </div>
+                    <div>
+                        <p><b>Email:</b></p>
+                        <p th:text="*{email}"></p>
+                    </div>
+                    <div>
+                        <p><b>Téléphone:</b></p>
+                        <p th:text="*{telephone}" ></p>
+                    </div>
+                    <div class="address">
+                        <p><b>Adresse du cabinet:</b></p>
+                        <address th:text="*{adresseDeCabinet}" ></address>
+                    </div>
+                </div>
+                <div class="infTravaille">
+                    <div>
+                        <p><b>Spécialité:</b></p>
+                        <p th:text="*{Specialite}"></p>
+                    </div>
+                    <div>
+                        <p><b>Heure de début:</b></p>
+                        <p th:text="*{heurDebut}"></p>
+                    </div>
+                    <div>
+                        <p><b>Heure de fin:</b></p>
+                        <p th:text="*{heurFin}"></p>
+                    </div>
+                    <div>
+                        <p><b>Durée:</b></p>
+                        <p th:text="*{dureeM}"></p>
+                    </div>
+                    <div>
+                        <p><b>Jour de travaille:</b></p>
+                        <ul id="days" th:text="*{jourDeTravaille}"></ul>
+                    </div>
+                </div>
+            </div>
+            <a th:href="@{/Medcins/FormModifierMedcin/{id}(id=*{id})}"><button type="button">Modifier</button></a>
+        </main>
+		<h2 th:if="${erreur}" th:text="${erreur}"></h2>
+        <footer></footer>
+    </div>
+	<script th:inline="javascript">
+		const jourDeTravaille = [[${medcins.jourDeTravaille}]];
+    </script>
+    <script th:src="@{/profileMedcine.js}" defer></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/icon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/container.css}">
+    <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/acceuil.css}">
+    <title>MedTime</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+			<h2 th:if="${session.Nom != null}" th:text="'Bonjour ' + ${session.Nom}"></h2>
+            <ul>
+                <li><a class="selected" th:href="@{/login/acceuil}">Les rendez-vous</a></li>
+                <li th:if="${session.role == 'medcin'}"><a th:href="@{/Secretaires/ListeSecretaires}">Secrétaires</a></li>
+                <li><a th:href="@{/Vacances/listeVacance}">Vacances</a></li>
+				<li th:if="${session.role == 'medcin'}"><a th:href="@{/Medcins/ProfileMedcin}">Profile</a></li>
+				<li th:if="${session.role == 'secretaire'}">
+                    <a th:href="@{/Secretaires/ProfileSecretaire/{id}(id=${session.user.id})}">Profile</a>
+                </li>
+            </ul>
+            <a th:href="@{/login/logout}"><button type="button">Deconnecter</button></a>
+        </header>
+        <main>
+			<p th:if="${erreurSecretaire}" style="color: red; font-weight: bold;" th:text="${erreurSecretaire}"></p>
+		    <p class="erreur" th:if="${erreur}"  th:text="${erreur}"></p>
+			<p th:if="${BienModifier}" style="color: #2bb673; font-weight: bold;" th:text="${BienModifier}"></p>
+            <!-- <div class="search">
+                <input type="text" id="numCarteNational" name="numCarteNational" placeholder="rechercher par numero du carte nationnale">
+                <input type="tel" id="telephone" name="telephone" placeholder="rechercher par numero du telephone">
+                <input type="date" id="date" name="date" placeholder="rechercher par la date">
+                <select id="etat" name="etat">
+                    <option value="">rechercher par l'état</option>
+                    <option value="prêt"></option>
+                    <option value="terminer"></option>
+                    <option value="absent"></option>
+                </select>
+            </div> -->
+            <table>
+                <!-- <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>
+                        <div>
+                            Carte nationnale
+                            <button><svg width="20px" height="15px">
+                                <line x1="0px" y1="10%" x2="100%" y2="10%" stroke-width="20%" stroke="gray"/>
+                                <line x1="0px" y1="50%" x2="100%" y2="50%" stroke-width="20%" stroke="gray"/>
+                                <line x1="0px" y1="90%" x2="100%" y2="90%" stroke-width="20%" stroke="gray"/>
+                            </svg></button>
+                        </div>
+                    </th>
+                    <th>
+                        <div>
+                            Telephone
+                            <button><svg width="20px" height="15px">
+                                <line x1="0px" y1="10%" x2="100%" y2="10%" stroke-width="20%" stroke="gray"/>
+                                <line x1="0px" y1="50%" x2="100%" y2="50%" stroke-width="20%" stroke="gray"/>
+                                <line x1="0px" y1="90%" x2="100%" y2="90%" stroke-width="20%" stroke="gray"/>
+                            </svg></button>
+                        </div>
+                    </th>
+                    <th>
+                        <div>
+                            Date
+                            <button><svg width="20px" height="15px">
+                                <line x1="0px" y1="10%" x2="100%" y2="10%" stroke-width="20%" stroke="gray"/>
+                                <line x1="0px" y1="50%" x2="100%" y2="50%" stroke-width="20%" stroke="gray"/>
+                                <line x1="0px" y1="90%" x2="100%" y2="90%" stroke-width="20%" stroke="gray"/>
+                            </svg></button>
+                        </div>
+                    </th>
+                    <th>Heure</th>
+                    <th>
+                        <div>
+                            Etat
+                            <button><svg width="20px" height="15px">
+                                <line x1="0px" y1="10%" x2="100%" y2="10%" stroke-width="20%" stroke="gray"/>
+                                <line x1="0px" y1="50%" x2="100%" y2="50%" stroke-width="20%" stroke="gray"/>
+                                <line x1="0px" y1="90%" x2="100%" y2="90%" stroke-width="20%" stroke="gray"/>
+                            </svg></button>
+                        </div>
+                    </th>
+                </tr> -->
+                <!-- <tr class="rs">
+                    <th class="search"></th>
+                    <th class="search"></th>
+                    <th class="search">
+                        <input type="search" id="numCarteNational" name="numCarteNational" placeholder="rechercher par carte nationnale">
+                    </th>
+                    <th class="search"><input type="tel" id="telephone" name="telephone" placeholder="rechercher par telephone"></th>
+                    <th class="search"><input type="date" id="date" name="date" placeholder="rechercher par la date"></th>
+                    <th class="search"></th>
+                    <th class="search"></th>
+                    <th class="search">
+                        <select id="etat" name="etat">
+                            <option value="pret">prêt</option>
+                            <option value="terminer">terminer</option>
+                            <option value="absent">absent</option>
+                        </select>
+                    </th>
+                </tr> -->
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Téléphone</th>
+                    <th>Carte nationnale</th>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Duree</th>
+                    <th>Etat</th>
+                </tr>
+				<tr class="pre" th:each="RendVP : ${allRendezVousPret}">
+                    <td class="nom"  th:text="${RendVP.nomPatient}"></td>
+				    <td class="prenom"  th:text="${RendVP.prenomPatient}"></td>
+				    <td class="telephone" th:text="${RendVP.telephonePatient}"></td>
+				    <td class="carteNational" th:text="${RendVP.nCarteNationale}"></td>
+				    <td class="date" th:text="${RendVP.date}"></td>
+				    <td class="heure"  th:text="${RendVP.time}"></td>
+				    <td class="duree"  th:text="${RendVP.dureeS}"></td>
+				    <td>
+                        <form th:action="@{/RendezVous/ModifierRole/{id}(id=${RendVP.id})}" method="get">
+                            <select id="role" name="role" class="select pret">
+                                <option class="pret" value="prêt" selected>prêt</option>
+                                <option class="terminer" value="terminer">terminer</option>
+                                <option class="absent" value="absent">absent</option>
+                                <option class="annuler" value="annuler">annuler</option>
+                            </select>
+                            <button type="submit" style="display: none;"></button>
+                        </form>
+                    </td>
+                    <td><form th:action="@{/RendezVous/FormModifierRendezVous/{id}(id=${RendVP.id})}" method="get">
+                        <button type="submit">Modifier</button>
+                    </form></td>
+                </tr>
+				
+				<tr class="ter" th:each="RendVT : ${allRendezVousTerminer}">
+                    <td class="nom" th:text="${RendVT.nomPatient}"></td>
+				    <td class="prenom" th:text="${RendVT.prenomPatient}"></td>
+				    <td class="telephone" th:text="${RendVT.telephonePatient}"></td>
+				    <td class="carteNational" th:text="${RendVT.nCarteNationale}"></td>
+				    <td class="date" th:text="${RendVT.date}"></td>
+				    <td class="heure" th:text="${RendVT.time}"></td>
+				    <td class="duree" th:text="${RendVT.dureeS}"></td>
+				    <td>
+                        <form th:action="@{/RendezVous/ModifierRole/{id}(id=${RendVT.id})}" method="get">
+                            <select id="role" name="role" class="select terminer">
+                                <option class="pret" value="prêt">prêt</option>
+                                <option class="terminer" value="terminer" selected>terminer</option>
+                                <option class="absent" value="absent">absent</option>
+                                <option class="annuler" value="annuler">annuler</option>
+                            </select>
+                            <button type="submit" style="display: none;"></button>
+                        </form>
+                    </td>
+	            </tr>
+							
+				<tr class="ann" th:each="RendVA : ${allRendezVousAnnuler}">
+                    <td class="nom" th:text="${RendVA.nomPatient}"></td>
+				    <td class="prenom" th:text="${RendVA.prenomPatient}"></td>
+				    <td class="telephone" th:text="${RendVA.telephonePatient}"></td>
+				    <td class="carteNational" th:text="${RendVA.nCarteNationale}"></td>
+				    <td class="date" th:text="${RendVA.date}"></td>
+				    <td class="heure" th:text="${RendVA.time}"></td>
+				    <td class="duree" th:text="${RendVA.dureeS}"></td>
+				    <td>
+                        <form th:action="@{/RendezVous/ModifierRole/{id}(id=${RendVA.id})}" method="get">
+                            <select id="role" name="role" class="select annuler">
+                                <option class="pret" value="prêt">prêt</option>
+                                <option class="terminer" value="terminer">terminer</option>
+                                <option class="absent" value="absent">absent</option>
+                                <option class="annuler" value="annuler" selected>annuler</option>
+                            </select>
+                            <button type="submit" style="display: none;"></button>
+                        </form>
+                    </td>
+                </tr>
+                
+				<tr class="abs" th:each="RendVAB : ${allRendezVousAbsent}">
+                    <td class="nom" th:text="${RendVAB.nomPatient}"></td>
+				    <td class="prenom" th:text="${RendVAB.prenomPatient}"></td>
+				    <td class="telephone" th:text="${RendVAB.telephonePatient}"></td>
+				    <td class="carteNational" th:text="${RendVAB.nCarteNationale}"></td>
+				    <td class="date" th:text="${RendVAB.date}"></td>
+				    <td class="heure" th:text="${RendVAB.time}"></td>
+				    <td class="duree" th:text="${RendVAB.dureeS}"></td>
+				    <td>
+                        <form th:action="@{/RendezVous/ModifierRole/{id}(id=${RendVAB.id})}" method="get">
+                            <select id="role" name="role" class="select absent">
+                            <option class="pret" value="prêt">prêt</option>
+                            <option class="terminer" value="terminer">terminer</option>
+                            <option class="absent" value="absent" selected>absent</option>
+                            <option class="annuler" value="annuler">annuler</option>
+                            </select>
+                            <button type="submit" style="display: none;"></button>
+                        </form>
+                    </td>
+                </tr>	
+            </table>
+        </main>
+        <footer></footer>
+    </div>
+    <script th:src="@{/acceuil.js}" defer></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+Guide d'utilisation de l'application MedTime
+--------------------------------------------
+
+1) Avant toute utilisation, il est obligatoire de créer un médecin dans la base de données.
+   → Cette étape permet de configurer le profil du médecin qui pourra ensuite gérer les rendez-vous.
+
+2) Une fois le médecin créé, l'application est prête à l'emploi.
+   → L'interface est intuitive et les étapes suivantes (connexion, gestion des rendez-vous, modification du profil, etc.) sont clairement guidées à l'écran.

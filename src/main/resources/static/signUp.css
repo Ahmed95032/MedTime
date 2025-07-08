@@ -1,0 +1,192 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: #d9f7e6;
+}
+.container{
+    width: fit-content;
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fafafa;
+    border: 2px solid #1f2d2d;
+}
+.container button{
+    display: block;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+.container header{
+    display: flex;
+    width: 100%;
+    border-bottom: 2px solid #1f2d2d;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+.container header a{
+    display: block;
+    color: #1f2d2d;
+    text-decoration: none;
+    font-size: 20px;
+    text-decoration: underline;
+    margin: 0 10px;
+}
+.container header a:hover{
+    color: #2bb673;
+}
+.container header a:active{
+    color: #f9aa33;
+}
+.container header a.svg button{
+    background: none;
+    border: none;
+}
+.container header a.svg button svg *{
+    transition: .1s;
+}
+.container header a.svg button:hover svg line{
+    stroke: #2bb673;
+}
+.container header a.svg button:active svg line{
+    stroke: #f9aa33;
+}
+
+.container main{
+    width: 100%;
+    padding: 20px 10px;
+}
+.container main form{
+    display: grid;
+    row-gap: 15px;
+    column-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    text-align: start;
+    vertical-align: middle;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container main form .data{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 45%;
+    gap: 10px 0;
+    margin: 0 15px;
+}
+.container main form input, .container main form textarea, .container main form .passdiv{
+    font-size: 20px;
+    width: 500px;
+    padding: 5px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.container main form .passdiv{
+    display: flex;
+    flex: 1 1 100%;
+    padding: 0;
+    outline-color: black;
+    outline-style: solid;
+}
+.container main form input.pass{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 35px;
+}
+.container main form input.pass:focus{
+    outline: none;
+}
+.container main form input.pass[type=password]{
+    font-size: 35px;
+}
+.container main form .passdiv button{
+    width: fit-content;
+    height: 35px;
+    border: none;
+    outline: none;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    transition: none;
+}
+.container main form .passdiv button svg{
+    border: none;
+    outline: none;
+    scale: 70%;
+}
+.container main form textarea{
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 35px;
+    max-height: 150px;
+}
+.container main form input:focus, .container main form textarea:focus{
+    outline: 1px solid #1f2d2d;
+}
+.container main form .i23{
+    grid-column: 1 / span 2;
+}
+.container main form .i23 .jours{
+    display: flex;
+    justify-content: space-between;
+    gap: 0 10px;
+}
+.container main form button{
+    width: fit-content;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: .1s;
+}
+.container main form .i23 .jours button.dis{
+    color: #1f2d2d;
+    border: 2px solid #1f2d2d;
+}
+.container main form .i23 .jours button.select{
+    color: #fafafa;
+    background-color: #2bb673;
+    border: 2px solid #1f2d2d;
+}
+.container main form .i23 .jours button:hover{
+    color: #f9aa33;
+    background-color: #1f2d2d;
+    border-color: #1f2d2d;
+}
+.container main form .i23 .jours button.select:hover{
+    color: #fafafa;
+    background-color: #145c39;
+    border-color: #0f1a1a;
+}
+.container main form .i23 .jours button.dis:active, .container main form .i23 .jours button.select:active{
+    color: #000;
+    background: none;
+    border: 2px solid #000;
+}
+.container main form button.sbmt{
+    grid-column: 1 / span 2;
+    color: #fafafa;
+    background: #2bb673;
+    border: 2px solid #1f2d2d;
+    margin: 0 15px;
+}
+.container main form button.sbmt:hover{
+    color: #f9aa33;
+    background: #1f2d2d;
+}
+.container main form button.sbmt:active{
+    color: #1f2d2d;
+    background: none;
+}

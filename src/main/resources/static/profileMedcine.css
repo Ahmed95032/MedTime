@@ -1,0 +1,69 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.none{
+    display: none;
+}
+.container main .data, .container main a{
+    margin: 0 5px;
+}
+.container main .data{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container main .infPersonnel, .container main .infTravaille{
+    flex: 1 1 45%;
+    flex-grow: 1;
+    border: 1px solid #1f2d2d;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+.container main .infPersonnel div, .container main .infTravaille div{
+    display: flex;
+    margin-bottom: 10px;
+}
+.container main p{
+    white-space: nowrap;
+}
+.container main .infPersonnel div p{
+    min-width: 120px;
+}
+.container main .infTravaille div p{
+    min-width: 180px;
+}
+.container main .infPersonnel .address address{
+    margin: 0;
+    margin-top: 30px;
+    font-style: normal;
+    line-height: 1.4;
+    color: #333;
+}
+.container main a button{
+    margin-top: 10px;
+    width: fit-content;
+    font-size: 20px;
+    padding: 10px 20px;
+    color: #fafafa;
+    background: #2bb673;
+    border: 2px solid #1f2d2d;
+    border-radius: 10px;
+    transition: .1s;
+}
+.container main a{
+    padding: 0;
+    width: fit-content;
+}
+.container main a:hover button{
+    color: #f9aa33;
+    background: #1f2d2d;
+}
+.container main a:active button{
+    color: #1f2d2d;
+    background: none;
+}

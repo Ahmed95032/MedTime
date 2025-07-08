@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" th:href="@{/icon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/container.css}">
+    <link rel="stylesheet" th:href="@{/rendezVous.css}">
+    <title>MedTime</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a th:if="${session.role != 'medcin' and session.role != 'secretaire'}" th:href="@{/RendezVous}" class="svg"><button type="button">
+                <svg width="202px" height="100%">
+                    <defs>
+                        <clipPath id="clip1">
+                            <circle cx="25px" cy="25px" r="20px"/>
+                        </clipPath>
+                        <clipPath id="Text">
+                            <rect class="r2" x="1px" y="1px" width="48px" height="48px" rx="10px" ry="10px"/>
+                        </clipPath>
+                    </defs>
+                    <text x="55px" y="50%" font-size="35px" alignment-baseline="middle" fill="#1f2d2d">MedTime</text>
+                    <rect class="r1" x="0" y="0" width="50px" height="50px" rx="10px" ry="10px" fill="#1f2d2d"/>
+                    <rect class="r2" x="1px" y="1px" width="48px" height="48px" rx="10px" ry="10px" fill="#2bb673"/>
+
+                    <circle class="actv c" cx="25px" cy="25px" r="20px" stroke-width="1px" fill="#fafafa" stroke="#fafafa"/>
+                    <circle class="clp" cx="35px" cy="25px" r="20px" fill="#2bb673" clip-path="url(#clip1)"/>
+                    <rect class="actv" x="18px" y="22px" width="25px" height="5px" rx="2px" ry="2px" stroke-width="1px" stroke="#1f2d2d"/>
+                    <rect class="actv" x="28px" y="13px" width="5px" height="25px" rx="2px" ry="2px" stroke-width="1px" stroke="#1f2d2d"/>
+                    <rect class="actv" x="18px" y="22px" width="25px" height="5px" rx="2px" ry="2px" fill="#fafafa"/>
+                    <rect class="actv" x="28px" y="13px" width="5px" height="25px" rx="2px" ry="2px" fill="#fafafa"/>
+                    <text class="actv" x="55px" y="50%" font-size="35px" alignment-baseline="middle" fill="#fafafa" clip-path="url(#Text)">
+                        MedTime
+                    </text>
+                </svg>
+            </button></a>
+			<a th:if="${session.role == 'medcin' or session.role == 'secretaire'}" th:href="@{/login/acceuil}" class="s" ><button>
+	                <svg width="30px" height="30px">
+	                    <line x1="50%" y1="20%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+	                    <line x1="100%" y1="50%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+	                    <line x1="50%" y1="80%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+	                </svg>
+			</button></a>
+			<ul><li th:if="${session.role != 'medcin' and session.role != 'secretaire'}"><a th:href="@{/login/Formlogin}"><button type="button">Se connecter</button></a></li></ul>
+        </header>
+        <main>
+			<p th:if="${erreurRendezVous}" style="color: red; font-weight: bold;" th:text="${erreurRendezVous}"></p>
+			<p th:if="${erreurRendezVousPdf}" style="color: red; font-weight: bold;" th:text="${erreurRendezVousPdf}"></p>		
+			<p th:if="${sendRendezVous}" style="color: #2bb673; font-weight: bold;" th:text="${sendRendezVous}"></p>
+
+            <form th:action="@{/RendezVous/AjouterRendezVous}"  method="post" th:object="${rendezvous}">
+                <div class="div">
+                    <p th:if="${dateErreur}" class="minWidthDateErreur">Il faut de remplire la date du rendez-vous</p>
+                    <p th:if="${timeErreur}" class="minWidthDateErreur">Il faut de remplire l'heure du rendez-vous</p>
+                    <div class="inpt">
+						<input type="hidden" name="Medcin" th:value="${id}"/>
+
+                        <div class="divI i1 label"><label for="nom">Nom:</label></div>
+                        <div class="divI i2">
+                            <input type="text" name="nom" id="nom" placeholder="Entrez votre nom..."
+                            th:field="*{nomPatient}">
+			                <p th:if="${nomErreur}" class="erreur" th:text="${nomErreur}"></p>
+                        </div>
+                        <div class="divI i3 label"><label for="prenom">Prénom:</label></div>
+                        <div class="divI i4">
+                            <input type="text" name="prenom" id="prenom" placeholder="Entrez votre prénom..."
+                            th:field="*{prenomPatient}">
+			                <p th:if="${prenomErreur}" class="erreur" th:text="${prenomErreur}"></p>
+                        </div>
+                        <div class="divI i5 label"><label for="telephome">Téléphone:</label></div>
+                        <div class="divI i6">
+                            <input type="tel" name="telephome" id="telephome" placeholder="Entrez votre № de téléphone..."
+                            th:field="*{telephonePatient}">
+			                <p th:if="${telephoneErreur}" class="erreur" th:text="${telephoneErreur}"></p>
+                        </div>
+                        <div class="divI i7 label"><label for="carteNatinale">№ de la carte nationale:</label></div>
+                        <div class="divI i8">
+                            <input type="text" name="carteNatinale" id="carteNatinale" placeholder="Entrez votre № de carte nationale..."
+                            th:field="*{nCarteNationale}">
+			                <p th:if="${ncarteErreur}" class="erreur" th:text="${ncarteErreur}"></p>
+                        </div>
+                        <div class="divI i9 date label"><label for="date">Date:</label></div>
+                        <div class="divI i10 date">
+                            <input type="date" id="date" th:field="*{date}" readonly>
+			                <p th:if="${dateErreur}" class="erreur" th:text="${dateErreur}"></p>
+                        </div>
+                        <div class="divI i11 time label"><label for="time">Heure:</label></div>
+                        <div class="divI i12 time">
+                            <input type="time" id="time" th:field="*{time}" readonly>
+			                <p th:if="${timeErreur}" class="erreur" th:text="${timeErreur}"></p>
+                        </div>
+                    </div>
+                    <div class="cld">
+                        <div class="cldinput">
+                            <button type="button" class="svg dis" id="prevCld">
+                                <svg width="30px" height="30px">
+                                    <line x1="50%" y1="20%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                                    <line x1="100%" y1="50%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                                    <line x1="50%" y1="80%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                                </svg>
+                            </button>
+                            <p id="p"></p>
+                            <button type="button" class="svg" id="nextCld">
+                                <svg width="30px" height="30px">
+                                    <line x1="50%" y1="20%" x2="100%" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                                    <line x1="0px" y1="50%" x2="100%" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                                    <line x1="50%" y1="80%" x2="100%" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="tableContainer"><div id="table"></div></div>
+                        <div id="timeContainer"></div>
+                    </div>
+                </div>
+				<div th:if="${session.role != 'medcin' and session.role != 'secretaire'}">
+					<button class="sbmt" type="submit" >Prend le rendez-vous</button>
+				</div>
+				
+				<div th:if="${session.role == 'medcin' or session.role == 'secretaire'}">
+					<input type="hidden" name="RendezVousId" th:value="${rendezvous.id != null} ? ${rendezvous.id} : 0" />
+					<button class="sbmt" type="submit" >Modifier le rendez-vous</button>
+				</div>
+				<div th:if="${sendRendezVous}" class="pdf">
+					<a class="apdf"th:href="@{/RendezVous/{id}/pdf(id=${idRendezVous})}">Téléchargez le fichier PDF</a>
+				</div>
+				<div th:if="${erreurRendezVousPdf}" class="pdf">
+					<a class="apdf"th:href="@{/RendezVous/{id}/pdf(id=${idRendezVousPdf})}">Téléchargez le fichier PDF</a>
+				</div>		
+            </form>
+        </main>
+        <footer></footer>
+    </div>
+    <script th:inline="javascript">
+        let rendezVousList = [
+            /*[# th:each="r : ${allRendezVousR}"]*/
+            {date : [[${r.date}]], time : [[${r.time}]], dureeS : [[${r.dureeS}]]},
+            /*[/]*/
+        ];
+        let selectedRendezVous = {
+            date : [[${rendezvous.date}]],
+            time : [[${rendezvous.time}]],
+            role : [[${rendezvous.role}]],
+        };
+        let medcin = {
+            jourDeTravaille : [[${Medcin0.jourDeTravaille}]],
+            heurDebut : [[${Medcin0.heurDebut}]],
+            heurFin : [[${Medcin0.heurFin}]],
+            dureeM : [[${Medcin0.dureeM}]],
+        };
+		const allVacances = [
+            /*[# th:each="r : ${allVacancesNotEnd}"]*/
+            {dateDebut : [[${r.dateDebut}]], dateFin : [[${r.dateFin}]]},
+            /*[/]*/
+        ];
+    </script>
+    <script th:src="@{/rendezVous.js}" defer></script>
+</body>
+</html>

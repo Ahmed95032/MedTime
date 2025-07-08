@@ -1,0 +1,158 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: #d9f7e6;
+}
+.container{
+    width: 600px;
+    display: block;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fafafa;
+    border: 2px solid #1f2d2d;
+}
+.container button{
+    display: block;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+.container header{
+    display: flex;
+    width: 100%;
+    border-bottom: 2px solid #1f2d2d;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+.container header a{
+    display: block;
+    color: #1f2d2d;
+    text-decoration: none;
+    font-size: 25px;
+    text-decoration: underline;
+    margin: 0 10px;
+}
+.container header a:hover{
+    color: #2bb673;
+}
+.container header a:active{
+    color: #f9aa33;
+}
+.container header a.svg button{
+    background: none;
+    border: none;
+}
+.container header a.svg button svg *{
+    transition: .1s;
+}
+.container header a.svg button:hover svg line{
+    stroke: #2bb673;
+}
+.container header a.svg button:active svg line{
+    stroke: #f9aa33;
+}
+
+.container main{
+    width: 100%;
+    padding: 20px 10px;
+}
+.container main form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    text-align: start;
+    vertical-align: middle;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container main form div.c{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex: 1 1 100%;
+}
+.container main form .inp{
+    width: 400px;
+}
+.container main form .label{
+    width: 160px;
+}
+.container main form input, .container main form .passdiv{
+    padding: 0 5px;
+    border: 1px solid #1f2d2d;
+    border-radius: 5px;
+}
+.container main form input{
+    width: 100%;
+    height: 50px;
+    outline: none;
+    font-size: 25px;
+}
+.container main form input:focus{
+    outline: 1px solid #1f2d2d;
+}
+.container main form .passdiv{
+    display: flex;
+    outline-color: #1f2d2d;
+    outline-style: solid;
+}
+.container main form input.pass{
+    flex: 1 1 100%;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0;
+}
+.container main form input.pass[type=password]{
+    font-size: 40px;
+}
+.container main form input.pass:focus{
+    outline: none;
+}
+.container main form .passdiv button{
+    width: fit-content;
+    height: 50px;
+    background: #fff;
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    transition: none;
+}
+.container main form .passdiv button svg{
+    border: none;
+    outline: none;
+}
+.container main form button.sbmt{
+    grid-column: 1 / span 2;
+    width: fit-content;
+    font-size: 25px;
+    padding: 5px 10px;
+    color: #fafafa;
+    background: #2bb673;
+    border: 2px solid #1f2d2d;
+    border-radius: 10px;
+    transition: .1s;
+}
+.container main form button.sbmt:hover{
+    color: #f9aa33;
+    background: #1f2d2d;
+}
+.container main form button.sbmt:active{
+    color: #1f2d2d;
+    background: none;
+}

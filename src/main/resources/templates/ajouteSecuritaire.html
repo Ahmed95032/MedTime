@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/icon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/ajouteSecretaire.css}">
+    <title>MedTime</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a th:href="@{/Secretaires/ListeSecretaires}" class="svg"><button>
+                <svg width="30px" height="30px">
+                    <line x1="50%" y1="20%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                    <line x1="100%" y1="50%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                    <line x1="50%" y1="80%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                </svg>
+            </button></a>
+        </header>
+        <main>
+            <form th:action="@{/Secretaires/saveSecretaire}" method="post" th:object="${secretaire}">
+				<input type="hidden" name="Medcin" th:value="${medcin.id}" />
+				<input type="hidden" th:field="*{id}" />
+				<div class="i1"><label for="nom" >Nom:</label></div>
+                <div class="i2"><input type="text" id="nom" placeholder="Entrez le nom..." th:field="*{nom}" required></div>
+                <div class="i3"><label for="prenom" >Prenom:</label></div>
+                <div class="i4"><input type="text" id="prenom" placeholder="Entrez le prenom..."  th:field="*{prenom}" required></div>
+                <div class="i5"><label for="telephone" >Téléphone:</label></div>
+                <div class="i6">
+                    <input type="tel" id="telephone" placeholder="Entrez le № de téléphone..." th:field="*{telephone}" required>
+                </div>
+                <div class="i7"><label for="email" >Email:</label></div>
+                <div class="i8"><input type="text"  id="email" placeholder="Entrez le email..." th:field="*{email}" required></div>
+                <div class="i9"><label for="password" >Mot de passe:</label></div>
+                <div class="i10">
+                    <input type="password" id="password" placeholder="Entrez le mot de passe..." th:field="*{password}" required
+                    autocomplete="none">
+                </div>
+                <button class="sbmt" type="submit" th:text="${secretaire.id} == 0 ? 'Ajouter secrétaire' : 'Modifier secrétaire'"></button>
+            </form>
+			<p th:if="${MemeEmail}" style="color: red; font-weight: bold;" th:text="${MemeEmail}"></p>
+        </main>
+    </div>
+</body>
+</html>

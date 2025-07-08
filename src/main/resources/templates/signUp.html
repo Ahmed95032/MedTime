@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" th:href="@{/icon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/signUp.css}">
+    <title>MedTime</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a th:href="@{/Medcins/ProfileMedcin}" class="svg"><button>
+                <svg width="30px" height="30px">
+                    <line x1="50%" y1="20%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                    <line x1="100%" y1="50%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                    <line x1="50%" y1="80%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                </svg>
+            </button></a>
+        </header>
+        <main>
+            <form th:action="@{/Medcins/ModifierMedcin}" method="post" th:object="${medcin}">
+				<input type="hidden" th:field="*{id}">
+                <div class="infPersonnel data">
+                    <div class="nom inf">
+                        <label for="nom">Nom:</label>
+                        <div class="inp">
+                            <input type="text" name="nom" id="nom" placeholder="Entrez votre nom..." th:field="*{nom}" required>
+                        </div>
+                    </div>
+                    <div class="prenom inf">
+                        <label for="prenom">Prénom:</label>
+                        <div class="inp">
+                            <input type="text" name="prenom" id="prenom" placeholder="Entrez votre prénom..." th:field="*{prenom}" required>
+                        </div>
+                    </div>
+                    <div class="telephone inf">
+                        <label for="telephone">Téléphone:</label>
+                        <div class="inp">
+                            <input type="tel" name="telephone" id="telephone" placeholder="Entrez votre № de téléphone..."
+                            th:field="*{telephone}" required>
+                        </div>
+                    </div>
+                    <div class="specialite inf">
+                        <label for="specialite">Spécialité:</label>
+                        <div class="inp">
+                            <input type="text" name="specialite" id="specialite" placeholder="Entrez votre spécialité..."
+                            th:field="*{Specialite}" required>
+                        </div>
+                    </div>
+                    <div class="email inf">
+                        <label for="email">Email:</label>
+                        <div class="inp">
+                            <input type="text" name="email" id="email" placeholder="Entrez votre email..." th:field="*{email}" required>
+                        </div>
+                    </div>
+                    <div class="password inf">
+                        <label for="password">Mot de passe:</label>
+                        <div class="inp passdiv" id="passdiv">
+                            <input type="password" class="pass" name="password" id="password" th:field="*{password}" autocomplete="none"
+                            required>
+                            <button type="button" id="pass">
+                                <svg id="svg" width="50px" height="50px">
+                                    <path d="M 50 25 Q 25 10, 0 25 Q 25 65, 50 25" fill="#555"/>
+                                    <path d="M 50 25 Q 25 -15, 0 25 Q 25 65, 50 25" stroke="#1f2d2d" fill="#222" id="eyelid"/>
+                                    <clipPath id="clip">
+                                        <path d="M 50 25 Q 25 -15, 0 25 Q 25 65, 50 25" id="eyelid2"/>
+                                    </clipPath>
+                                    <circle r="10px" cx="25px" cy="25px" fill="#fafafa" stroke="#fafafa" id="eye" clip-path="url(#clip)"/>
+                                    <circle r="4px" cx="25px" cy="25px" fill="#000" id="pupil" clip-path="url(#clip)"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="infTravaille data">
+                    <div class="adresse inf">
+                        <label for="adresse">Adresse du cabinet:</label>
+                        <div class="inp">
+                            <textarea name="adresse" id="adresse" placeholder="Entrez l'adresse du cabinet..." th:field="*{adresseDeCabinet}"
+                            required></textarea>
+                        </div>
+                    </div>
+                    <div class="heurDebut inf">
+                        <label for="heurDebut">Heure de début:</label>
+                        <div class="inp">
+                            <input type="time" name="heurDebut" id="heurDebut" th:field="*{heurDebut}" required>
+                        </div>
+                    </div>
+                    <div class="heurFin inf">
+                        <label for="heurFin">Heure de fin:</label>
+                        <div class="inp">
+                            <input type="time" name="heurFin" id="heurFin"  th:field="*{heurFin}" required>
+                        </div>
+                    </div>
+                    <div class="duree inf">
+                        <label for="duree">Durée des rendez-vous:</label>
+                        <div class="inp">
+                            <input type="time" name="duree" id="duree" th:field="*{dureeM}" required>
+                        </div>
+                        <p class="erreur" th:if="${erreurDurre}" style="color: red; font-weight: bold;" th:text="${erreurDurre}"></p>
+                    </div>
+                    <div class="i23 inf">
+                        <p>Entrer votre jours de travail:</p>
+                        <div class="jours">
+                            <button type="button" id="lundi" class="dis" value="lun">Lun</button>
+                            <button type="button" id="mardi" class="dis" value="mar">Mar</button>
+                            <button type="button" id="mercredi" class="dis" value="mer">Mer</button>
+                            <button type="button" id="jeudi" class="dis" value="jeu">Jeu</button>
+                            <button type="button" id="vendredi" class="dis" value="ven">Ven</button>
+                            <button type="button" id="samedi" class="dis" value="sam">Sam</button>
+                            <button type="button" id="dimanche" class="dis" value="dim">Dim</button>
+                        </div>
+                        <input type="number" name="jourDeTravaille" id="jourDeTravaille" th:field="*{jourDeTravaille}" style="display: none;">
+                    </div>
+                </div>
+                <button class="sbmt" type="submit" th:if="${session.role == 'medcin'}">Modifier</button>
+            </form>
+        </main>
+    </div>
+	<script th:src="@{/signUp.js}" defer></script>
+    <script th:src="@{/eye.js}" defer></script>
+</body>
+</html>

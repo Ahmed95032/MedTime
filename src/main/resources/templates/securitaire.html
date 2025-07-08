@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" th:href="@{/icon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/container.css}">
+    <link rel="stylesheet" th:href="@{/header.css}">
+    <link rel="stylesheet" th:href="@{/acceuil.css}">
+    <title>MedTime</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+			<h2 th:if="${session.Nom != null}" th:text="'Bonjour ' + ${session.Nom}"></h2>
+            <ul>
+                <li><a th:href="@{/login/acceuil}">Les rendez-vous</a></li>
+                <li th:if="${session.role == 'medcin'}"><a class="selected" th:href="@{/Secretaires/ListeSecretaires}" >Secrétaires</a></li>
+                <li><a th:href="@{/Vacances/listeVacance}">Vacances</a></li>
+				<li th:if="${session.role == 'medcin'}"><a th:href="@{/Medcins/ProfileMedcin}">Profile</a></li>
+				<li th:if="${session.role == 'secretaire'}">
+                    <a th:href="@{/Secretaires/ProfileSecretaire/{id}(id=${session.user.id})}">Profile</a>
+                </li>
+            </ul>
+            <a th:href="@{/login/logout}"><button type="button">Deconnecter</button></a>
+        </header>
+        <main>
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                </tr>
+                <tr th:each="sec : ${allSecretaires}">
+                    <td class="nom" th:text="${sec.nom}"></td>
+                    <td class="prenom" th:text="${sec.prenom}"></td>
+                    <td class="email" th:text="${sec.email}"></td>
+                    <td class="telephone" th:text="${sec.telephone}"></td>
+                    <td><form type="submit" th:action="@{/Secretaires/FormModifierSecretaire/{id}(id=${sec.id})}" method="get">
+                        <button >Editer</button>
+                    </form></td>
+                    <td><form type="submit" th:action="@{/Secretaires/SupprimerSecretaire/{id}(id=${sec.id})}" method="get">
+                        <button >Supprimer</button>
+                    </form></td>
+                </tr>
+            </table>
+            <a th:href="@{/Secretaires/FormAjouterSecretaire}"><button>Ajouter secrétaire</button></a>
+        </main>
+		<h2 th:if="${erreur}" th:text="${erreur}"></h2>
+        <footer></footer>
+    </div>
+</body>
+</html>

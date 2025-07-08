@@ -1,0 +1,139 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container main p.erreur{
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+.container main table, .container main table td button{
+    width: 100%;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+.container main table, .container main table td, .container main table th{
+    border-collapse: collapse;
+    padding: 5px 10px;
+}
+.container main table td, .container main table th{
+    border: 1px solid black;
+}
+.container main table th{
+    font-weight: bold;
+    background-color: #f2f2f2;
+    text-transform: uppercase;
+}
+.container main table td{
+    background-color: #fff;
+}
+/* .container main table tr.rs, .container main table th.search{
+    background: none;
+    border: none;
+} */
+.container main table td.carteNational, .container main table td.nom, .container main table td.prenom{
+    text-transform: lowercase;
+}
+.container main table td.carteNational::first-letter, .container main table td.nom::first-letter, 
+.container main table td.prenom::first-letter{
+    text-transform: uppercase;
+}
+.container main table td button, .container main table td.carteNational, .container main table td.date, 
+.container main table td.heure, .container main table td.duree{
+    text-align: center;
+}
+.container main table input, .container main table select{
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 2px;
+    box-sizing: border-box;
+    /* padding: 2px 5px; */
+}
+/* .container main table th div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.container main table th button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: fit-content;
+    height: fit-content;
+    padding: 2px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.container main table th button:hover{
+    border-color: #2bb673;
+}
+.container main table th button:hover svg line{
+    stroke: #2bb673;
+}
+.container main table th button:active{
+    border-color: #f9aa33;
+}
+.container main table th button:active svg line{
+    stroke: #f9aa33;
+} */
+ .container main table select{
+    outline: none;
+ }
+.container main table .pret{
+    color: black;
+    border: 1px solid black;
+}
+.container main table .terminer{
+    color: #2bb673;
+    border: 1px solid #2bb673;
+}
+.container main table .annuler{
+    color: #f00;
+    border: 1px solid #f00;
+}
+.container main table .absent{
+    color: #f9aa33;
+    border: 1px solid #f9aa33;
+}
+.container main table td button{
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    transition: .1s;
+}
+.container main table td button:hover{
+    color: #2bb673;
+    border-color: #2bb673;
+}
+.container main table td button:active{
+    color: #f9aa33;
+    border-color: #f9aa33;
+}
+.container main a button{
+    margin: 5px 0;
+    grid-column: 1 / span 2;
+    width: fit-content;
+    font-size: 20px;
+    padding: 5px 10px;
+    color: #fafafa;
+    background: #2bb673;
+    border: 2px solid #1f2d2d;
+    border-radius: 10px;
+    transition: .1s;
+}
+.container main a button:hover{
+    color: #f9aa33;
+    background: #1f2d2d;
+}
+.container main a button:active{
+    color: #1f2d2d;
+    background: none;
+}

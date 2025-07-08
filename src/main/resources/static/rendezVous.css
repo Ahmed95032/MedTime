@@ -1,0 +1,379 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+p.erreur{
+    color: #f00;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+p.minWidthDateErreur{
+    display: none;
+    color: red;
+    font-weight: bold;
+    width: 100%;
+}
+.container header a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 0 5px;
+}
+.container header a.svg button{
+    background: none;
+    border: none;
+    height: 50px;
+}
+.container header a.svg button svg *{
+    transition: .3s;
+}
+.container header a.svg:hover button svg .r1{
+    width: 100%;
+}
+.container header a.svg:hover button svg .r2{
+    width: calc(100% - 2px);
+}
+.container header a.svg:active button svg *{
+    transition: .1s;
+}
+.container header a.svg:active button svg .r2{
+    fill: #1f2d2d;
+}
+.container header a.svg:active button svg .actv{
+    fill: #f9aa33;
+}
+.container header a.svg:active button svg .c{
+    stroke: #f9aa33;
+}
+.container header a.svg:active button svg .clp{
+    fill: #1f2d2d;
+}
+
+.container header a.s button{
+    background: none;
+    border: none;
+}
+.container header a.s button svg *{
+    transition: .1s;
+}
+.container header a.s:hover button svg line{
+    stroke: #2bb673;
+}
+.container header a.s:active button svg line{
+    stroke: #f9aa33;
+}
+.container header ul{
+    display: flex;
+    justify-content: space-around;
+}
+.container header ul li{
+    padding-right: 5px;
+}
+.container header ul li a button{
+    font-size: 20px;
+    padding: 5px 10px;
+    color: #1f2d2d;
+    border: 2px solid #1f2d2d;
+    border-radius: 20px;
+    transition: .1s;
+}
+.container header ul li a button:hover{
+    color: #fafafa;
+    background: #2bb673;
+}
+.container header ul li a button:active{
+    color: #f9aa33;
+    background: #1f2d2d;
+}
+
+.container main form{
+    display: block;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container main form .div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container main form .div .inpt{
+    width: 630px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 15px;
+    column-gap: 10px;
+}
+.container main form .div .inpt input, #p{
+    font-size: 20px;
+    width: 400px;
+    padding: 5px;
+    outline: none;
+    border-radius: 5px;
+}
+.container main form .div .inpt div.divI{
+    height: 40px;
+}
+.container main form .div .inpt input{
+    border: 1px solid black;
+}
+.container main form .div .inpt input:focus{
+    outline: 1px solid #1f2d2d;
+}
+.date, .time, .container main form .div .inpt input:read-only, .container main form .div .inpt input:read-only:focus{
+	color: #555;
+	outline: none;
+	cursor: default;
+}
+.container main form .div .inpt input:read-only, .container main form .div .inpt input:read-only:focus{
+    border: 1px solid #ccc;
+	background-color: #f0f0f0;
+}
+.container main form button.sbmt{
+    margin-top: 10px;
+    width: fit-content;
+    font-size: 20px;
+    padding: 5px 10px;
+    color: #fafafa;
+    background: #2bb673;
+    border: 2px solid #1f2d2d;
+    border-radius: 10px;
+    transition: .1s;
+}
+.container main form button.sbmt:hover{
+    color: #f9aa33;
+    background: #1f2d2d;
+}
+.container main form button.sbmt:active{
+    color: #1f2d2d;
+    background: none;
+}
+.container main form .div .cld{
+    width: 520px;
+    font-size: 16px;
+    text-align: center;
+    background: #2bb673;
+    border: 1px solid #1f2d2d;
+    padding: 0 5px;
+    border-radius: 10px;
+}
+.container main form .div .cld .cldinput{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    border-radius: 10px;
+}
+.container main form .div .cld #table h3, #p{
+    text-align: center;
+    cursor: default;
+}
+#p{
+    background-color: #f9f9f9;
+    border: 1px solid #555;
+    /* border-top: none; */
+    color: #555;
+    font-weight: 400;
+}
+.container main form .div .cld button.svg{
+    background: #f9f9f9;
+    padding: 0 5px;
+    /* border: 1px solid black; */
+    border: 1px solid gray;
+    /* border-top: none; */
+    border-radius: 5px;
+}
+/* .container main form .div .cld button.svg:hover{
+    border-color: #2bb673;
+}
+.container main form .div .cld button.svg:active{
+    border-color: #f9aa33;
+} */
+.container main form .div .cld button.svg svg line{
+    transition: .1s;
+}
+.container main form .div .cld button.svg:hover svg line{
+    stroke: #2bb673;
+}
+.container main form .div .cld button.svg:active svg line{
+    stroke: #f9aa33;
+}
+.container main form .div .cld button.dis,
+.container main form .div .cld button.dis:hover,
+.container main form .div .cld button.dis:active{
+    border: 1px solid gray;
+    cursor: default;
+}
+.container main form .div .cld button.dis svg line,
+.container main form .div .cld button.dis:hover svg line,
+.container main form .div .cld button.dis:active svg line{
+    stroke: gray;
+}
+.container main form .div .cld .tableContainer{
+    display: flex;
+    width: 100%;
+    padding: 5px 0;
+    overflow: hidden;
+    background: #2bb673;
+    border-radius: 10px;
+}
+.container main form .div .cld #table{
+    display: flex;
+    width: 100%;
+    transition: margin-left 0.5s ease;
+}
+.container main form .div .cld #table .days{
+    flex: 0 0 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #1f2d2d;
+    border-radius: 10px;
+}
+.container main form .div .cld #table .days p, .container main form .div .cld #table .days button.dis{
+    color: gray;
+    cursor: default;
+}
+
+.container main form .div .cld #table .days h3.dim{
+    color: red;
+}
+.container main form .div .cld #table .days h3.disabled{
+    color: gray;
+}
+.container main form .div .cld #table .days p{
+    border: 1px solid transparent;
+}
+.container main form .div .cld #table .days p.ac:hover{
+    border: 1px solid gray;
+}
+
+.container main form .div .cld #table .days button{
+    border-radius: 20px;
+}
+.container main form .div .cld #table .days button.dis{
+    border: 1px solid gray;
+}
+.container main form .div .cld #table .days button.actif{
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid black;
+    /* transition: .1s; */
+    transition: 0.2s ease;
+}
+.container main form .div .cld #table .days button.actif:hover{
+    background: #2bb673;
+    border: 1px solid #1f2d2d;
+}
+.container main form .div .cld #table .days button.selected,
+.container main form .div .cld #table .days button.selected:hover{
+    color: #f9aa33;
+    background-color: #1f2d2d;
+    border: 1px solid #1f2d2d;
+}
+.container main form .div .cld #table .days button.actif:active{
+    color: #fbbf5e;
+    background-color: #151f1f;
+    border: 1px solid #151f1f;
+}
+#timeContainer{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
+}
+#timeContainer button{
+    min-width: 60px;
+    max-width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    background-color: #f9f9f9;
+}
+#timeContainer button.selected{
+    background: #2bb673;
+}
+#timeContainer button.timeDis{
+    color: gray;
+    border: 1px solid gray;
+    cursor: default;
+}
+.container main form .pdf a.apdf{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container main form .pdf a.apdf:hover{
+    color: #2bb673;
+    text-decoration: underline;
+}
+.container main form .pdf a.apdf:active{
+    color: #1f2d2d;
+    text-decoration: underline;
+}
+@media (max-width: 1199px) {
+    p.minWidthDateErreur{
+        display: block;
+    }
+    .date, .time{
+        display: none;
+    }
+    .container main form{
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .container main form .div{
+        width: 100%;
+        justify-content: center;
+        flex-direction: column; 
+        row-gap: 10px;
+    }
+    .container main form .div .inpt{
+        width: 100%;
+    }
+    .container main form .div .input input, .container main form .div .input label{
+        width: 100%;
+    }
+    .container main form .div .cld{
+        width: 100%;
+    }
+}
+@media (max-width: 630px) {
+    .container main form .div .inpt{
+        grid-template-columns: 1fr;
+    }
+    .container main form .div .inpt input{
+        width: 100%;
+    }
+    .container main form .div .inpt .label{
+        display: none;
+    }
+}
+@media (max-width: 1200px) {
+    .container{
+        border-width: 0;
+    }
+}
+@media (max-width: 1199px) {
+    .container{
+        width: 100%;
+        max-width: 900px;
+        border-width: 2px;
+    }
+    .container header{
+        border-top: none;
+    }
+    .container main{
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+@media (max-width: 899px) {
+    .container{
+        border: none;
+    }
+}

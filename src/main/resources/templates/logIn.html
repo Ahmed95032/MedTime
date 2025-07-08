@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" th:href="@{/icon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/logIn.css}">
+    <title>MedTime</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a th:href="@{/login/logout}" class="svg"><button>
+                <svg width="30px" height="30px">
+                    <line x1="50%" y1="20%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                    <line x1="100%" y1="50%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                    <line x1="50%" y1="80%" x2="0px" y2="50%" stroke-width="3px" stroke-linecap="square" stroke="black"/>
+                </svg>
+            </button></a>
+        </header>
+        <main>
+            <form th:action="@{/login/VerifierConnexion}" method="post">
+                <div class="c">
+                    <div class="label"><label for="email">Email:</label></div>
+                    <div class="inp">
+                        <input type="email" name="email" th:value="${param.email}" id="email" placeholder="Entrez votre email..." required>
+                    </div>
+                </div>
+                <div class="c">
+                    <div class="label"><label for="password">Mot de passe:</label></div>
+                    <div class="inp passdiv" id="passdiv">
+                        <input type="password" id="password" class="pass" name="password" th:value="${param.password}" autocomplete="none" 
+                        required>
+                        <button type="button" id="pass">
+                            <svg id="svg" width="50px" height="50px">
+                                <path d="M 50 25 Q 25 10, 0 25 Q 25 65, 50 25" fill="#555"/>
+                                <path d="M 50 25 Q 25 -15, 0 25 Q 25 65, 50 25" stroke="#1f2d2d" fill="#222" id="eyelid"/>
+                                <clipPath id="clip">
+                                    <path d="M 50 25 Q 25 -15, 0 25 Q 25 65, 50 25" id="eyelid2"/>
+                                </clipPath>
+                                <circle r="10px" cx="25px" cy="25px" fill="#fafafa" stroke="#fafafa" id="eye" clip-path="url(#clip)"/>
+                                <circle r="4px" cx="25px" cy="25px" fill="#000" id="pupil" clip-path="url(#clip)"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <button class="sbmt" type="submit">Se connecter</button>
+            </form>
+			<div th:if="${loginError}" style="color: red; font-weight: bold;">
+				 <p th:text="${loginError}"></p>
+		    </div>
+        </main>
+    </div>
+    <script th:src="@{/eye.js}" defer></script>
+</body>
+</html>

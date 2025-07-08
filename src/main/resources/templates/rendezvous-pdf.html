@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>MedTime</title>
+	<style>
+		body { font-family: Arial, sans-serif; padding: 20px; }
+		h1 { text-align: center; color: #2E86C1; }
+	</style>
+</head>
+<body>
+    <h1>Confirmation de Rendez-Vous</h1>
+    <p><strong>Nom complet du patient:</strong> <span th:text="${rdv.nomPatient}+' '+${rdv.prenomPatient}"></span></p>
+	<p><strong>Téléphone du patient:</strong> <span th:text="${rdv.telephonePatient}"></span></p>
+	<p><strong>Numero du Carte Nationale :</strong> <span th:text="${rdv.nCarteNationale}"></span></p>
+    <p><strong>Nom complet du médecin:</strong> <span th:text="${rdv.medcin.nom}+' '+${rdv.medcin.prenom}"></span></p>
+    <p><strong>Date:</strong> <span th:text="${rdv.date}"></span></p>
+    <p><strong>Heure:</strong> <span th:text="${rdv.time}"></span></p>
+	<p><strong>Durée de la science :</strong> <span th:text="${rdv.dureeS}"></span></p>
+    <p><strong>Spécialité :</strong> <span th:text="${rdv.medcin.Specialite}"></span></p>
+	<p><strong>Adresse du cabinet :</strong> <span th:text="${rdv.medcin.adresseDeCabinet}"></span></p>
+</body>
+</html>
